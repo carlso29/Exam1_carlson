@@ -1,0 +1,20 @@
+Avery Carlson
+EEB 416 
+Exam 1
+Questions 1-5
+
+1. Ecological modeling relates to the use of mathematical models to simulate and analyze biological processes. 
+This is not a research area in bioinformatics; however, it is a subset of computational biology. The reason it is 
+not an area of bioinformatics is because bioinformatics directly relates to macromolecule information (DNA, RNA, protein),
+whereas ecological modeling likely looks at model parameters (i.e. influent mass loadings, cell density, thermodynamics, etc). 
+Ecological modeling of populations of organisms likely uses bioinformatic techniques for information
+pertinent to the research question, but it is most likely a research area of computational biology and not bioinformatics.
+
+2. False. Not all sequence data is peer reviewed when initially submitted. 
+
+3. A value that close to 0 (i.e. less than 1x10^-50) means that there is an extremely high confidence the database result is 
+homologus
+
+4. PCR amplification, Cloning
+
+5. Eukaryotes have 2-3 genomes per cell. Prokaryotes have circular DNA, or 1 genome per cell. 
