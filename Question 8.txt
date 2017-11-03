@@ -1,0 +1,20 @@
+Avery Carlson
+EEB 416
+Exam 1
+Question 8
+
+1. https://www.helsinki.fi/en/researchgroups/metapopulation-research-centre/glanville-fritillary-butterfly-genome-project
+
+2. LiSs (Linkage map Superscaffolder) for superscaffolding. This software is unpublished
+
+3. Lep-MAP software for SNP data, MIP scaffolder for genome scaffolding, Coral and HybridSHREC for read error correction, 
+   PANNZER for annotation, SANS for predicting orthology
+
+4. No, the information on software is only available on their website. The main pieces of helpful information on NCBI are
+the summary of assembly level, and the publication citation. 
+
+5. Microarray dependent SNPs are those where probes are prepared on a chip, which individually binds to SNP alleles. The 
+alternative is using RNA-Seq techniques (shotgun sequencing). This will give you many reads that you can compare with the
+original sequences from a database, but are not microarray dependent. From there, the reads are called de novo. With these 
+sequences available, you can use the bcftools function on UNIX to identify the SNP by indexing to the de novo reads back to
+the microarray reads. 
