@@ -1,0 +1,22 @@
+Avery Carlson
+EEB 416
+Exam 1 
+Question 6
+
+1. Chosen protein sequence: R2R3-MYB transcription factor [Jatropha curcas], 313 aa protein sequence
+   Accession No. AFV73403
+
+2. BLASTP is most appropriate when beginning with a protein sequence
+
+3. 141 hits
+
+4. 62 species
+
+5. 
+Species			Accession No.		Evalue
+Hevea brasiliensis	XP_021678755		0
+Manihot esculenta	XP_02101648		0
+Populus trichocarpa	XP_002302428		1E-159
+Carica papaya		XP_021903563		6E-157
+Durio zibethinus	XP_022772895		6E-156
+Populus euphratica	XP_011017151		5E-155
