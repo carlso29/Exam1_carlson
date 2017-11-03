@@ -1,0 +1,62 @@
+---
+title: "Homo_sapien GRCH38.82 Analysis"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r load data}
+Homo_sapien_exon <- read.csv("Homo_sapiens.GRCh38.82.abinitio.exon.gtf", sep = "", header = FALSE)
+Homo_sapien_transcript <- read.csv("Homo_sapiens.GRCh38.82.abinitio.transcript.gtf", sep = "", header = FALSE)
+```
+
+```{r}
+colnames(Homo_sapien_exon)[1] <- "chromosome"
+colnames(Homo_sapien_exon)[2] <- "type"
+colnames(Homo_sapien_exon)[3] <- "start"
+colnames(Homo_sapien_exon)[4] <- "end"
+colnames(Homo_sapien_transcript)[1] <- "chromosome"
+colnames(Homo_sapien_transcript)[2] <- "type"
+colnames(Homo_sapien_transcript)[3] <- "start"
+colnames(Homo_sapien_transcript)[4] <- "end"
+```
+
+```{r}
+Homo_sapien_exon$length <- Homo_sapien_exon$end - Homo_sapien_exon$start
+Homo_sapien_transcript$length <- Homo_sapien_transcript$end - Homo_sapien_transcript$start
+```
+
+```{r}
+averageE <- aggregate(Homo_sapien_exon$length, list(Homo_sapien_exon$chromosome), mean)
+averageTran <- aggregate(Homo_sapien_transcript$length, list(Homo_sapien_transcript$chromosome), mean)
+stdE <- aggregate(Homo_sapien_exon$length, list(Homo_sapien_exon$chromosome), sd)
+stdTran <- aggregate(Homo_sapien_transcript$length, list(Homo_sapien_transcript$chromosome), sd)
+sumE <- aggregate(Homo_sapien_exon$length, list(Homo_sapien_exon$chromosome), sum)
+sumTran <- aggregate(Homo_sapien_transcript$length, list(Homo_sapien_transcript$chromosome), sum)
+averageE$sterr <- stdE$x/sqrt(sumE$x)
+averageTran$sterr <- stdE$x/sqrt(sumE$x)
+```
+
+```{r}
+library(knitr)
+kable(averageE, caption = "Table for Exons")
+kable(averageTran, caption = "Table for Transcript")
+```
+
+```{r}
+library(ggplot2)
+ExonX <- subset(Homo_sapien_exon, chromosome == "X")
+ExonY <- subset(Homo_sapien_exon, chromosome == "Y")
+hist(ExonX$length)
+hist(ExonY$length)
+```
+
+```{r}
+totalLen <- sumE$x + sumTran$x
+plot(averageE$x, totalLen)
+```
+
+There is no relationship between total chromosome length and average exon length
