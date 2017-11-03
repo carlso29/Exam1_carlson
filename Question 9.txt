@@ -1,0 +1,13 @@
+Avery Carlson
+EEB 416
+Exam 1
+Question 9
+
+1. 101,933
+   Code: grep ">" Homo_sapiens.GRCh38.cds.all.fa -c
+
+2. 2,066,758
+   Code: wc -l Homo_sapiens.GRCh38.cds.all.fa
+
+3. Yes, it is present
+   Code: grep "AGATCGG" Homo_sapiens.GRCh38.cds.all.fa -c
