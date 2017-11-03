@@ -1,0 +1,22 @@
+Avery Carlson
+EEB416
+Exam 1
+Question 7
+
+Chosen sequence: Jatropha curcas R2R3-MYB transcription factor (MYB1) mRNA, complete cds
+Accession no. JX569771
+
+1. BLASTN because you are trying to find homologs starting with a DNA sequence
+
+2. 40 hits
+
+3. 21 organisms
+
+4. 
+Species			Accession No.		Evalue
+Hevea brasiliensis	XM_021823063		0
+Manihot esculenta	XM_021745956		0
+Populus euphratica	XM_011018849		2E-127
+Ricinus communis	XM_002510109		3E-96
+Morus noabilis		XM_010103368		4E-95
+Prunus avium		XM_021964517		6E-88
