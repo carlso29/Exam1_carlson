@@ -1,0 +1,52 @@
+#!/bin/sh
+####  PBS preamble
+
+#PBS -N RNA-seq 
+#PBS -V
+
+# Change the number of cores (ppn=4), amount of memory, and walltime
+# based on what your job will require:
+#PBS -l nodes=1:ppn=4,mem=4000mb,walltime=01:00:00
+
+#PBS -A eeb416f17_flux
+#PBS -q flux
+#PBS -l qos=flux
+
+#PBS -m abe 
+#PBS -j oe 
+
+####  End PBS preamble
+
+#  Show list of CPUs you ran on, if you're running under PBS
+if [ -n "$PBS_JOBID" ]; then echo -n "Running on nodes/cores: "; qstat -n $PBS_JOBID | tail -1; fi
+
+#  Change to the directory you submitted from
+if [ -n "$PBS_O_WORKDIR" ]; then cd $PBS_O_WORKDIR; fi; echo -n "Current working directory: "; pwd
+echo
+
+#  Echo job script commands as they are executed
+set -x
+
+#  Put your job script commands here:
+module load bwa
+module load python-anaconda2/201704
+module load samtools/1.5
+
+#index
+bwa index -a is [fasta file name].fa > [index filename].stdout 2> [index filename].stderr
+#Align
+bwa aln -t4 [assembly filename].fa [short read file].fq > [temp file].sai 2> [error file].stderr
+#Align 2
+bwa aln -t4 [assembly filename].fa [short read file2].fq > [temp file2].sai 2> [error file2].stderr
+
+#Sam File
+bwa sampe [assembly filename].fa [temp file].sai [temp file2].sai [short read file].fq [shortread file2].fq > [sam file].sam 2> [error file3].stderr
+
+#Convert to Bam
+samtools view -b [sam file].sam > [bam file].bam
+samtools view -F 0x904 -f 0x40 -b [bam file].bam > output.filter.bam
+
+#Output Read Counts
+samtools sort -@ 4 -m 8G output.filter.bam -o output.filter.sorted.bam 
+samtools index output.filter.sorted.bam 
+samtools idxstats output.filter.sorted.bam > output.counts.txt
